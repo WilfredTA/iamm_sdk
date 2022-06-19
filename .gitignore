@@ -1,0 +1,16 @@
+trampoline-env.toml
+target/*
+.trampoline/*
+
+# Rust
+scripts/iamm_nft/target/*
+scripts/iamm_nft/.cache/.cargo/*
+scripts/iamm_nft/contracts/**/target/*
+
+# C
+scripts/iamm_nft/contracts/c/build/*
+
+# others
+scripts/iamm_nft/build/*
+scripts/iamm_nft/!.gitkeep
+scripts/iamm_nft/.tmp/

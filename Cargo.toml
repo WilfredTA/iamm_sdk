@@ -1,0 +1,16 @@
+[package]
+name = "iamm_sdk"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+iamm_sdk-schemas = {path = "./schemas", optional = true}
+iamm_sdk-generators = {path = "./generators", optional = true}
+
+[workspace]
+members = ["schemas", "generators"]
+
+[features]
+default = ["schemas", "generators"]
+generators = ["iamm_sdk-generators"]
+schemas = ["iamm_sdk-schemas"]

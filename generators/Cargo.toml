@@ -1,0 +1,10 @@
+[package]
+name = "iamm_sdk-generators"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+iamm_sdk-schemas = {path = "../schemas"}
+trampoline-sdk = {git = "https://github.com/Tempest-Protocol/trampoline", branch = "types-lib"}
+ckb-hash = "0.103.0"
+ckb-jsonrpc-types = "0.103.0"
