@@ -14,6 +14,8 @@
 // define modules
 mod entry;
 mod error;
+mod queries;
+mod invariants;
 
 use core::arch::asm;
 use ckb_std::{

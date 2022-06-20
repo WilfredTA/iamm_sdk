@@ -1,11 +1,23 @@
+#![no_std]
+extern crate no_std_compat as std;
+
 use std::prelude::v1::*;
-use trampoline_sdk::contract::{TContract, schema::*, ContractCellField};
+use trampoline_sdk::contract::schema::{TrampolineBaseSchema, SchemaPrimitiveType, BytesConversion, MolConversion};
+
 use trampoline_sdk::{impl_entity_unpack, impl_pack_for_fixed_byte_array, impl_primitive_reader_unpack};
 use trampoline_sdk::ckb_types::bytes::Bytes;
 use trampoline_sdk::ckb_types::prelude::*;
 mod nft;
-
 use nft::*;
+
+#[cfg(all(feature = "std", not(feature = "script")))]
+use ckb_jsonrpc_types::JsonBytes;
+
+#[cfg(all(feature = "std", not(feature = "script")))]
+use trampoline_sdk::contract::schema::{TrampolineSchema};
+
+#[cfg(all(feature = "std", not(feature = "script")))]
+use trampoline_sdk::contract::schema::{JsonConversion, JsonByteConversion};
 
 impl_pack_for_fixed_byte_array!([u8; 32], Byte32);
 impl_primitive_reader_unpack!([u8; 32], Byte32Reader, 32, from);
@@ -13,6 +25,7 @@ impl_entity_unpack!([u8; 32], Byte32);
 
 pub type GenesisId = SchemaPrimitiveType<[u8; 32], Byte32>;
 pub type ContentId = SchemaPrimitiveType<[u8; 32], Byte32>;
+
 
 #[derive(Debug, Clone, Default)]
 pub struct IammNFT {
@@ -38,12 +51,12 @@ impl BytesConversion for IammNFT {
     }
 }
 
-impl From<IammNFT> for trampoline_sdk::types::bytes::Bytes {
+impl From<IammNFT> for trampoline_sdk::bytes::Bytes {
     fn from(nft: IammNFT) -> Self {
         nft.to_bytes().into()
     }
 }
-
+#[cfg(all(feature = "std", not(feature = "script")))]
 impl JsonByteConversion for IammNFT {
     fn to_json_bytes(&self) -> JsonBytes {
         todo!()
@@ -53,7 +66,7 @@ impl JsonByteConversion for IammNFT {
         todo!()
     }
 }
-
+#[cfg(all(feature = "std", not(feature = "script")))]
 impl JsonConversion for IammNFT {
     type JsonType = JsonBytes;
 
@@ -84,13 +97,11 @@ impl MolConversion for IammNFT {
     }
 }
 
+impl TrampolineBaseSchema for IammNFT {}
+
+#[cfg(all(feature = "std", not(feature = "script")))]
 impl TrampolineSchema for IammNFT {}
 
 pub type NftArgs = SchemaPrimitiveType<Bytes, trampoline_sdk::ckb_types::packed::Bytes>;
 
 
-pub type IammNFTContract =
-    TContract<NftArgs, IammNFT>;
-
-
-pub type NftContractField = ContractCellField<NftArgs, IammNFT>;

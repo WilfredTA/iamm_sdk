@@ -16,7 +16,7 @@ mkdir -p build/debug
 cd contracts/iamm_nft
 
 echo "cargo build the contract ..."
-cargo build --target riscv64imac-unknown-none-elf
+cargo +nightly build --target riscv64imac-unknown-none-elf
 cd ../../
 
 echo "patch the binary ..."
