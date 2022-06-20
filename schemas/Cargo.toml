@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 molecule = {version = "0.7.2", default-features = false}
 no-std-compat = {version = "0.4.1", features = ["alloc", "compat_macros", "compat_hash"]}
-trampoline-sdk = {git = "https://github.com/Tempest-Protocol/trampoline", branch = "types-lib"}
+trampoline-sdk = {git = "https://github.com/Tempest-Protocol/trampoline", branch = "types-lib", default-features = false}
 ckb-jsonrpc-types = { version = "0.103.0", optional = true }
 
 [features]
