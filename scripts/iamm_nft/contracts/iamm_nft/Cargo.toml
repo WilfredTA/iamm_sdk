@@ -7,7 +7,7 @@ edition = "2018"
 
 [dependencies]
 ckb-std = {git = "https://github.com/Tempest-Protocol/ckb-std"}
-iamm_sdk-schemas = {path = "../../../../schemas", default-features = false, features = ["script"]}
+iamm_sdk-schemas = {git = "https://github.com/WilfredTA/iamm_sdk", default-features = false, features = ["script"]}
 trampoline-sdk = {git = "https://github.com/Tempest-Protocol/trampoline", branch = "types-lib", default-features = false, features = ["script"]}
 blake2b-ref = "0.3.0"
 hashbrown = "0.12.1"

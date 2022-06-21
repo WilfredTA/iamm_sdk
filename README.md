@@ -17,6 +17,14 @@ Smart contracts written with [Capsule](https://github.com/nervosnetwork/capsule)
 ## Build Instructions
 To build `generators` and `schemas`, run `cargo build --workspace`.
 
+### Build Contract with Capsule
+To build the contracts using `Capsule`:
+1. Ensure Capsule is installed `cargo install ckb-capsule`
+2. `cd scripts/iamm_nft`
+3. `capsule build`
+
+
+### Build Contract without Capsule
 Ensure you have the necessary pre-requisites installed:
 
 1. install ckb-binary-patcher
