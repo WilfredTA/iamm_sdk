@@ -23,7 +23,13 @@ Ensure you have the necessary pre-requisites installed:
     `cargo install --git https://github.com/xxuejie/ckb-binary-patcher.git`
 2. add target
     `rustup  target add riscv64imac-unknown-none-elf`
+    `apt-get install gcc-riscv64imac-unknown-none-elf`
 
 Then, to build the nft contract: `cd scripts/iamm_nft` and `bash build.sh`.
+
+If the bash script produces errors such as this:
+`error: failed to run custom build command for ckb-std v0.9.0`
+
+then you may need to install the the [riscv toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) 
 
 *Note*: We do not use `capsule build` because it prevents using the `iamm_nft-schemas` package as a dependency due to the project structure.
