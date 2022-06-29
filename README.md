@@ -14,5 +14,30 @@ Molecule-defined structures and bindings to rust-native types.
 ### Scripts
 Smart contracts written with [Capsule](https://github.com/nervosnetwork/capsule)
 
+## Build Instructions
+To build `generators` and `schemas`, run `cargo build --workspace`.
 
-**Note**: Currently, the Capsule smart contract does not successfully build. This is due to a dependence on a previous version of Trampoline that provided `no_std` compatibility for schemas. A fix is underway and will be available soon.
+### Build Contract with Capsule
+To build the contracts using `Capsule`:
+1. Ensure Capsule is installed `cargo install ckb-capsule`
+2. `cd scripts/iamm_nft`
+3. `capsule build`
+
+
+### Build Contract without Capsule
+Ensure you have the necessary pre-requisites installed:
+
+1. install ckb-binary-patcher
+    `cargo install --git https://github.com/xxuejie/ckb-binary-patcher.git`
+2. add target
+    `rustup  target add riscv64imac-unknown-none-elf`
+    `apt-get install gcc-riscv64imac-unknown-none-elf`
+
+Then, to build the nft contract: `cd scripts/iamm_nft` and `bash build.sh`.
+
+If the bash script produces errors such as this:
+`error: failed to run custom build command for ckb-std v0.9.0`
+
+then you may need to install the the [riscv toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) 
+
+*Note*: We do not use `capsule build` because it prevents using the `iamm_nft-schemas` package as a dependency due to the project structure.

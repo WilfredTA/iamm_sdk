@@ -9,7 +9,7 @@
 // 7. If args[1] == HashType::Data, then use cell_deps data hash, else use cell_deps type hash
 use crate::error::Error;
 use crate::queries::{get_all_genesis_tnft_ids, get_curr_genesis_id, map_of_genesis_ids};
-use alloc::collections::BTreeMap;
+use hashbrown::HashMap;
 use alloc::vec::Vec;
 use ckb_std::debug;
 use ckb_std::{
@@ -20,7 +20,7 @@ use ckb_std::{
         self, load_cell_capacity, load_cell_data, load_cell_occupied_capacity, QueryIter,
     },
 };
-use tnft_schema::*;
+use iamm_sdk_schemas::*;
 pub const ONE_CKB: u64 = 100_000_000;
 pub const MIN_NFT_DATA_SIZE: u64 = ONE_CKB * 64;
 

@@ -1,6 +1,12 @@
 trampoline-env.toml
 target/*
-.trampoline/*
+.trampoline/network/*
+!.trampoline/network/indexer
+.trampoline/network/indexer/!.gitkeep
+.trampoline/accounts/*
+!.trampoline/accounts/.gitkeep
+.trampoline/cache/*
+!.trampoline/cache/.gitkeep
 
 # Rust
 scripts/iamm_nft/target/*

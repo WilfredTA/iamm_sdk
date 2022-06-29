@@ -1,15 +1,22 @@
 use iamm_sdk_schemas::*;
 use trampoline_sdk::ckb_types::packed::{OutPoint, CellInput};
 use trampoline_sdk::contract::schema::MolConversion;
-use trampoline_sdk::contract::{OutputRule, ContractField, RuleContext, RuleScope, ContractCellField, TransactionField};
+use trampoline_sdk::contract::auxiliary_types::{OutputRule, ContractField, RuleContext, RuleScope, ContractCellField, TransactionField};
+use trampoline_sdk::contract::TContract;
 use trampoline_sdk::ckb_types::{H256, bytes::Bytes};
 use trampoline_sdk::ckb_types::prelude::*;
 use trampoline_sdk::ckb_types::core::TransactionView;
 use ckb_hash::blake2b_256;
-use trampoline_sdk::types::script::Script;
-use trampoline_sdk::types::query::{CellQuery, QueryStatement, CellQueryAttribute};
+use trampoline_sdk::script::Script;
+
+use trampoline_sdk::query::{CellQuery, QueryStatement, CellQueryAttribute};
 use ckb_jsonrpc_types::Byte32 as JsonByte32;
 
+pub type IammNFTContract =
+    TContract<NftArgs, IammNFT>;
+
+
+pub type NftContractField = ContractCellField<NftArgs, IammNFT>;
 
 fn genesis_id_from(input: CellInput) -> GenesisId {
     let input = input.previous_output();
